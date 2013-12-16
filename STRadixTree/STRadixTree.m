@@ -209,7 +209,7 @@ lookupAgain:;
             goto lookupAgain;
         }
     }
-    return nil;
+    return child;
 }
 
 @end
