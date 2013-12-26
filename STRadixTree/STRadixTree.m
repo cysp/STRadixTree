@@ -97,8 +97,11 @@
 }
 
 - (NSSet *)objectsForKeyPrefix:(NSString *)prefix {
+    return [self objectsForKeyPrefix:prefix unambiguousCompletion:NULL];
+}
+- (NSSet *)objectsForKeyPrefix:(NSString *)prefix unambiguousCompletion:(NSString *__autoreleasing *)unambiguousCompletion {
     NSMutableSet *set = [[NSMutableSet alloc] init];
-    STRadixTreeNode *node = [self nodeForKeyPrefix:prefix];
+    STRadixTreeNode *node = [self nodeForKeyPrefix:prefix unambiguousCompletion:unambiguousCompletion];
     [self.class addObjectsUnderNode:node toSet:set];
     return set.copy;
 }
@@ -189,6 +192,9 @@ lookupAgain:;
 }
 
 - (STRadixTreeNode *)nodeForKeyPrefix:(NSString *)prefix {
+    return [self nodeForKeyPrefix:prefix unambiguousCompletion:NULL];
+}
+- (STRadixTreeNode *)nodeForKeyPrefix:(NSString *)prefix unambiguousCompletion:(NSString * __autoreleasing *)unambiguousCompletion {
     if (prefix.length == 0) {
         return _root;
     }
@@ -208,6 +214,9 @@ lookupAgain:;
             node = child;
             goto lookupAgain;
         }
+    }
+    if (unambiguousCompletion) {
+        *unambiguousCompletion = [child.key substringFromIndex:remainingKey.length];
     }
     return child;
 }

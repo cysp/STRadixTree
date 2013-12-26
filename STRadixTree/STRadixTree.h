@@ -14,5 +14,6 @@
 
 - (NSSet *)objectsForKey:(NSString *)key;
 - (NSSet *)objectsForKeyPrefix:(NSString *)prefix;
+- (NSSet *)objectsForKeyPrefix:(NSString *)prefix unambiguousCompletion:(NSString * __autoreleasing *)unambiguousCompletion;
 
 @end
