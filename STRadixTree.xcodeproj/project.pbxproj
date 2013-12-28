@@ -7,17 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C2BECB51874E9DA009EC7DC /* STRadixTreeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C676D621856A84A00B25210 /* STRadixTreeTests.m */; };
+		2C2BECB71874E9DA009EC7DC /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C676D541856A84A00B25210 /* XCTest.framework */; };
+		2C2BECB81874E9DA009EC7DC /* libSTRadixTree.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C676D431856A84A00B25210 /* libSTRadixTree.a */; };
+		2C2BECBA1874E9DA009EC7DC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C676D461856A84A00B25210 /* Foundation.framework */; };
 		2C676D471856A84A00B25210 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C676D461856A84A00B25210 /* Foundation.framework */; };
 		2C676D4C1856A84A00B25210 /* STRadixTree.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2C676D4B1856A84A00B25210 /* STRadixTree.h */; };
 		2C676D4E1856A84A00B25210 /* STRadixTree.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C676D4D1856A84A00B25210 /* STRadixTree.m */; };
 		2C676D551856A84A00B25210 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C676D541856A84A00B25210 /* XCTest.framework */; };
 		2C676D561856A84A00B25210 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C676D461856A84A00B25210 /* Foundation.framework */; };
-		2C676D581856A84A00B25210 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C676D571856A84A00B25210 /* UIKit.framework */; };
 		2C676D5B1856A84A00B25210 /* libSTRadixTree.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C676D431856A84A00B25210 /* libSTRadixTree.a */; };
 		2C676D631856A84A00B25210 /* STRadixTreeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C676D621856A84A00B25210 /* STRadixTreeTests.m */; };
+		2CAD4757186EC68000032692 /* STRadixTree.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C676D4D1856A84A00B25210 /* STRadixTree.m */; };
+		2CAD4759186EC68000032692 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C676D461856A84A00B25210 /* Foundation.framework */; };
+		2CAD475B186EC68000032692 /* STRadixTree.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2C676D4B1856A84A00B25210 /* STRadixTree.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		2C2BECB31874E9DA009EC7DC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2C676D3B1856A84A00B25210 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2C676D421856A84A00B25210;
+			remoteInfo = STRadixTree;
+		};
 		2C676D591856A84A00B25210 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2C676D3B1856A84A00B25210 /* Project object */;
@@ -38,9 +51,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2CAD475A186EC68000032692 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				2CAD475B186EC68000032692 /* STRadixTree.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2C2BECBF1874E9DA009EC7DC /* STRadixTreeTests-iOS copy.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "STRadixTreeTests-iOS copy.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C676D431856A84A00B25210 /* libSTRadixTree.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSTRadixTree.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C676D461856A84A00B25210 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2C676D4B1856A84A00B25210 /* STRadixTree.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = STRadixTree.h; sourceTree = "<group>"; };
@@ -50,9 +74,20 @@
 		2C676D571856A84A00B25210 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		2C676D5E1856A84A00B25210 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C676D621856A84A00B25210 /* STRadixTreeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = STRadixTreeTests.m; sourceTree = "<group>"; };
+		2CAD475F186EC68000032692 /* libSTRadixTree.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSTRadixTree.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		2C2BECB61874E9DA009EC7DC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C2BECB71874E9DA009EC7DC /* XCTest.framework in Frameworks */,
+				2C2BECBA1874E9DA009EC7DC /* Foundation.framework in Frameworks */,
+				2C2BECB81874E9DA009EC7DC /* libSTRadixTree.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2C676D401856A84A00B25210 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -66,9 +101,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C676D551856A84A00B25210 /* XCTest.framework in Frameworks */,
-				2C676D5B1856A84A00B25210 /* libSTRadixTree.a in Frameworks */,
-				2C676D581856A84A00B25210 /* UIKit.framework in Frameworks */,
 				2C676D561856A84A00B25210 /* Foundation.framework in Frameworks */,
+				2C676D5B1856A84A00B25210 /* libSTRadixTree.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2CAD4758186EC68000032692 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2CAD4759186EC68000032692 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,6 +132,8 @@
 			children = (
 				2C676D431856A84A00B25210 /* libSTRadixTree.a */,
 				2C676D531856A84A00B25210 /* STRadixTreeTests.xctest */,
+				2CAD475F186EC68000032692 /* libSTRadixTree.a */,
+				2C2BECBF1874E9DA009EC7DC /* STRadixTreeTests-iOS copy.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -125,9 +169,27 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		2C676D421856A84A00B25210 /* STRadixTree */ = {
+		2C2BECB11874E9DA009EC7DC /* STRadixTreeTests-mac */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2C676D661856A84A00B25210 /* Build configuration list for PBXNativeTarget "STRadixTree" */;
+			buildConfigurationList = 2C2BECBC1874E9DA009EC7DC /* Build configuration list for PBXNativeTarget "STRadixTreeTests-mac" */;
+			buildPhases = (
+				2C2BECB41874E9DA009EC7DC /* Sources */,
+				2C2BECB61874E9DA009EC7DC /* Frameworks */,
+				2C2BECBB1874E9DA009EC7DC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2C2BECB21874E9DA009EC7DC /* PBXTargetDependency */,
+			);
+			name = "STRadixTreeTests-mac";
+			productName = STRadixTreeTests;
+			productReference = 2C2BECBF1874E9DA009EC7DC /* STRadixTreeTests-iOS copy.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		2C676D421856A84A00B25210 /* STRadixTree-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2C676D661856A84A00B25210 /* Build configuration list for PBXNativeTarget "STRadixTree-iOS" */;
 			buildPhases = (
 				2C676D3F1856A84A00B25210 /* Sources */,
 				2C676D401856A84A00B25210 /* Frameworks */,
@@ -137,14 +199,14 @@
 			);
 			dependencies = (
 			);
-			name = STRadixTree;
+			name = "STRadixTree-iOS";
 			productName = STRadixTree;
 			productReference = 2C676D431856A84A00B25210 /* libSTRadixTree.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		2C676D521856A84A00B25210 /* STRadixTreeTests */ = {
+		2C676D521856A84A00B25210 /* STRadixTreeTests-iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2C676D691856A84A00B25210 /* Build configuration list for PBXNativeTarget "STRadixTreeTests" */;
+			buildConfigurationList = 2C676D691856A84A00B25210 /* Build configuration list for PBXNativeTarget "STRadixTreeTests-iOS" */;
 			buildPhases = (
 				2C676D4F1856A84A00B25210 /* Sources */,
 				2C676D501856A84A00B25210 /* Frameworks */,
@@ -155,10 +217,27 @@
 			dependencies = (
 				2C676D5A1856A84A00B25210 /* PBXTargetDependency */,
 			);
-			name = STRadixTreeTests;
+			name = "STRadixTreeTests-iOS";
 			productName = STRadixTreeTests;
 			productReference = 2C676D531856A84A00B25210 /* STRadixTreeTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		2CAD4755186EC68000032692 /* STRadixTree-mac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2CAD475C186EC68000032692 /* Build configuration list for PBXNativeTarget "STRadixTree-mac" */;
+			buildPhases = (
+				2CAD4756186EC68000032692 /* Sources */,
+				2CAD4758186EC68000032692 /* Frameworks */,
+				2CAD475A186EC68000032692 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "STRadixTree-mac";
+			productName = STRadixTree;
+			productReference = 2CAD475F186EC68000032692 /* libSTRadixTree.a */;
+			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
 
@@ -168,6 +247,14 @@
 			attributes = {
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Scott Talbot";
+				TargetAttributes = {
+					2C2BECB11874E9DA009EC7DC = {
+						TestTargetID = 2CAD4755186EC68000032692;
+					};
+					2C676D521856A84A00B25210 = {
+						TestTargetID = 2C676D421856A84A00B25210;
+					};
+				};
 			};
 			buildConfigurationList = 2C676D3E1856A84A00B25210 /* Build configuration list for PBXProject "STRadixTree" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -181,13 +268,22 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				2C676D421856A84A00B25210 /* STRadixTree */,
-				2C676D521856A84A00B25210 /* STRadixTreeTests */,
+				2C676D421856A84A00B25210 /* STRadixTree-iOS */,
+				2CAD4755186EC68000032692 /* STRadixTree-mac */,
+				2C676D521856A84A00B25210 /* STRadixTreeTests-iOS */,
+				2C2BECB11874E9DA009EC7DC /* STRadixTreeTests-mac */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		2C2BECBB1874E9DA009EC7DC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2C676D511856A84A00B25210 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -198,6 +294,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		2C2BECB41874E9DA009EC7DC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C2BECB51874E9DA009EC7DC /* STRadixTreeTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2C676D3F1856A84A00B25210 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -214,22 +318,58 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2CAD4756186EC68000032692 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2CAD4757186EC68000032692 /* STRadixTree.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		2C2BECB21874E9DA009EC7DC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2C676D421856A84A00B25210 /* STRadixTree-iOS */;
+			targetProxy = 2C2BECB31874E9DA009EC7DC /* PBXContainerItemProxy */;
+		};
 		2C676D5A1856A84A00B25210 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 2C676D421856A84A00B25210 /* STRadixTree */;
+			target = 2C676D421856A84A00B25210 /* STRadixTree-iOS */;
 			targetProxy = 2C676D591856A84A00B25210 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		2C2BECBD1874E9DA009EC7DC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = STRadixTreeTests/Info.plist;
+				PRODUCT_NAME = "STRadixTreeTests-iOS copy";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		2C2BECBE1874E9DA009EC7DC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = STRadixTreeTests/Info.plist;
+				PRODUCT_NAME = "STRadixTreeTests-iOS copy";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
 		2C676D641856A84A00B25210 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -241,11 +381,14 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_ATOMIC_PROPERTIES = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_REPEATED_USE_OF_WEAK = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -262,9 +405,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
+				RUN_CLANG_STATIC_ANALYZER = YES;
 			};
 			name = Debug;
 		};
@@ -272,7 +414,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -284,12 +425,15 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_ATOMIC_PROPERTIES = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_REPEATED_USE_OF_WEAK = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
@@ -299,8 +443,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				SDKROOT = iphoneos;
+				RUN_CLANG_STATIC_ANALYZER = YES;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -309,8 +452,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DSTROOT = /tmp/STRadixTree.dst;
-				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				PRODUCT_NAME = STRadixTree;
+				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -319,8 +463,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DSTROOT = /tmp/STRadixTree.dst;
-				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				PRODUCT_NAME = STRadixTree;
+				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -328,7 +473,6 @@
 		2C676D6A1856A84A00B25210 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -339,7 +483,8 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = STRadixTreeTests/Info.plist;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = STRadixTreeTests;
+				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
@@ -347,21 +492,50 @@
 		2C676D6B1856A84A00B25210 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				INFOPLIST_FILE = STRadixTreeTests/Info.plist;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = STRadixTreeTests;
+				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+		2CAD475D186EC68000032692 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/STRadixTree.dst;
+				PRODUCT_NAME = STRadixTree;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		2CAD475E186EC68000032692 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/STRadixTree.dst;
+				PRODUCT_NAME = STRadixTree;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		2C2BECBC1874E9DA009EC7DC /* Build configuration list for PBXNativeTarget "STRadixTreeTests-mac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2C2BECBD1874E9DA009EC7DC /* Debug */,
+				2C2BECBE1874E9DA009EC7DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		2C676D3E1856A84A00B25210 /* Build configuration list for PBXProject "STRadixTree" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -371,21 +545,32 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2C676D661856A84A00B25210 /* Build configuration list for PBXNativeTarget "STRadixTree" */ = {
+		2C676D661856A84A00B25210 /* Build configuration list for PBXNativeTarget "STRadixTree-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2C676D671856A84A00B25210 /* Debug */,
 				2C676D681856A84A00B25210 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
-		2C676D691856A84A00B25210 /* Build configuration list for PBXNativeTarget "STRadixTreeTests" */ = {
+		2C676D691856A84A00B25210 /* Build configuration list for PBXNativeTarget "STRadixTreeTests-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2C676D6A1856A84A00B25210 /* Debug */,
 				2C676D6B1856A84A00B25210 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2CAD475C186EC68000032692 /* Build configuration list for PBXNativeTarget "STRadixTree-mac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2CAD475D186EC68000032692 /* Debug */,
+				2CAD475E186EC68000032692 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
