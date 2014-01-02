@@ -7,37 +7,9 @@
 #include "STRadixTreeNode.h"
 
 
-static NSComparator const STRadixTreeNodeKeyComparator = ^(STRadixTreeNode *a, STRadixTreeNode *b) {
-    return [a.key compare:b.key];
-};
-static NSComparator const STRadixTreeNodeKeyFirstCharacterComparator = ^(NSString *a, NSString *b) {
-    if ([a isKindOfClass:[STRadixTreeNode class]]) {
-        a = ((STRadixTreeNode *)a).key;
-    }
-    if ([b isKindOfClass:[STRadixTreeNode class]]) {
-        b = ((STRadixTreeNode *)b).key;
-    }
-    unichar aFirstCharacter = 0;
-    if (a.length) {
-        aFirstCharacter = [a characterAtIndex:0];
-    }
-    unichar bFirstCharacter = 0;
-    if (b.length) {
-        bFirstCharacter = [b characterAtIndex:0];
-    }
-    if (aFirstCharacter > bFirstCharacter) {
-        return NSOrderedDescending;
-    }
-    if (aFirstCharacter < bFirstCharacter) {
-        return NSOrderedAscending;
-    }
-    return NSOrderedSame;
-};
-
-
 @implementation STRadixTreeNode {
-    @private
-    NSMutableArray *_children;
+@private
+    NSMutableDictionary *_children;
     NSMutableSet *_objects;
 }
 
@@ -47,7 +19,7 @@ static NSComparator const STRadixTreeNodeKeyFirstCharacterComparator = ^(NSStrin
 - (id)initWithKey:(NSString *)key {
     if ((self = [super init])) {
         _key = [key copy];
-        _children = [[NSMutableArray alloc] init];
+        _children = [[NSMutableDictionary alloc] init];
         _objects = [[NSMutableSet alloc] init];
     }
     return self;
@@ -55,25 +27,38 @@ static NSComparator const STRadixTreeNodeKeyFirstCharacterComparator = ^(NSStrin
 
 - (void)addChild:(STRadixTreeNode *)node {
     NSParameterAssert(node.key.length);
-    NSUInteger const insertionIndex = [_children indexOfObject:node inSortedRange:(NSRange){ .length = _children.count } options:NSBinarySearchingInsertionIndex usingComparator:STRadixTreeNodeKeyComparator];
-    [_children insertObject:node atIndex:insertionIndex];
+    NSString * const nodeKey = node.key;
+    unichar const nodeKeyFirstCharacter = [nodeKey characterAtIndex:0];
+    _children[@(nodeKeyFirstCharacter)] = node;
 }
 
 - (void)removeChild:(STRadixTreeNode *)node {
-    [_children removeObject:node];
+    NSString * const nodeKey = node.key;
+    unichar const nodeKeyFirstCharacter = [nodeKey characterAtIndex:0];
+    STRadixTreeNode * const found = _children[@(nodeKeyFirstCharacter)];
+    if (found == node) {
+        [_children removeObjectForKey:@(nodeKeyFirstCharacter)];
+    }
 }
 
+- (NSArray *)children {
+    NSMutableArray * const children = [[NSMutableArray alloc] initWithCapacity:_children.count];
+    [_children enumerateKeysAndObjectsUsingBlock:^(id key, STRadixTreeNode *child, BOOL *stop) {
+        [children addObject:child];
+    }];
+    return children;
+}
 - (void)setChildren:(NSArray *)children {
-    [_children setArray:children];
+    for (STRadixTreeNode *child in children) {
+        [self addChild:child];
+    }
 }
 
 - (STRadixTreeNode *)childMatchingPrefixOfKey:(NSString *)key {
     NSParameterAssert(key.length);
-    NSUInteger const index = [_children indexOfObject:key inSortedRange:(NSRange){ .length = _children.count } options:0 usingComparator:STRadixTreeNodeKeyFirstCharacterComparator];
-    if (index != NSNotFound) {
-        return _children[index];
-    }
-    return nil;
+    unichar const keyFirstCharacter = [key characterAtIndex:0];
+    STRadixTreeNode * const found = _children[@(keyFirstCharacter)];
+    return found;
 }
 
 - (void)addObject:(id)object {
