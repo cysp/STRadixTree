@@ -85,7 +85,7 @@ static NSUInteger const STRadixTreeNodePersonalityTinyMaxChildren = 8;
     NSString * const nodeKey = node.key;
     unichar const nodeKeyFirstCharacter = [nodeKey characterAtIndex:0];
     BOOL found = NO;
-    NSUInteger foundIndex;
+    NSUInteger foundIndex = 0; // analyzer has a false-positive on the first use below if uninitialized
     for (NSUInteger i = 0; i < STRadixTreeNodePersonalityTinyMaxChildren; ++i) {
         if (_tinyChildren[i] == nil) {
             if (i > 0 && found) {
