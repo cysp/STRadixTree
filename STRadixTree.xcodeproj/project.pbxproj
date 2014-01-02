@@ -11,6 +11,8 @@
 		2C2BECB71874E9DA009EC7DC /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C676D541856A84A00B25210 /* XCTest.framework */; };
 		2C2BECB81874E9DA009EC7DC /* libSTRadixTree.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C676D431856A84A00B25210 /* libSTRadixTree.a */; };
 		2C2BECBA1874E9DA009EC7DC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C676D461856A84A00B25210 /* Foundation.framework */; };
+		2C2BECC51874FE98009EC7DC /* STRadixTreeNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2BECC11874EB45009EC7DC /* STRadixTreeNode.m */; };
+		2C2BECC61874FE98009EC7DC /* STRadixTreeNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2BECC11874EB45009EC7DC /* STRadixTreeNode.m */; };
 		2C676D471856A84A00B25210 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C676D461856A84A00B25210 /* Foundation.framework */; };
 		2C676D4C1856A84A00B25210 /* STRadixTree.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2C676D4B1856A84A00B25210 /* STRadixTree.h */; };
 		2C676D4E1856A84A00B25210 /* STRadixTree.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C676D4D1856A84A00B25210 /* STRadixTree.m */; };
@@ -65,6 +67,8 @@
 
 /* Begin PBXFileReference section */
 		2C2BECBF1874E9DA009EC7DC /* STRadixTreeTests-iOS copy.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "STRadixTreeTests-iOS copy.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C2BECC11874EB45009EC7DC /* STRadixTreeNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STRadixTreeNode.m; sourceTree = "<group>"; };
+		2C2BECC21874EB45009EC7DC /* STRadixTreeNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STRadixTreeNode.h; sourceTree = "<group>"; };
 		2C676D431856A84A00B25210 /* libSTRadixTree.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSTRadixTree.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C676D461856A84A00B25210 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2C676D4B1856A84A00B25210 /* STRadixTree.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = STRadixTree.h; sourceTree = "<group>"; };
@@ -153,6 +157,8 @@
 			children = (
 				2C676D4B1856A84A00B25210 /* STRadixTree.h */,
 				2C676D4D1856A84A00B25210 /* STRadixTree.m */,
+				2C2BECC21874EB45009EC7DC /* STRadixTreeNode.h */,
+				2C2BECC11874EB45009EC7DC /* STRadixTreeNode.m */,
 			);
 			path = STRadixTree;
 			sourceTree = "<group>";
@@ -307,6 +313,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C676D4E1856A84A00B25210 /* STRadixTree.m in Sources */,
+				2C2BECC51874FE98009EC7DC /* STRadixTreeNode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -323,6 +330,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2CAD4757186EC68000032692 /* STRadixTree.m in Sources */,
+				2C2BECC61874FE98009EC7DC /* STRadixTreeNode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
