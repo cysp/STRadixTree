@@ -47,7 +47,6 @@ static NSComparator const STRadixTreeNodeKeyFirstCharacterComparator = ^(NSStrin
 - (id)initWithKey:(NSString *)key {
     if ((self = [super init])) {
         _key = [key copy];
-        _children = [[NSMutableArray alloc] init];
         _objects = [[NSMutableSet alloc] init];
     }
     return self;
@@ -55,23 +54,34 @@ static NSComparator const STRadixTreeNodeKeyFirstCharacterComparator = ^(NSStrin
 
 - (void)addChild:(STRadixTreeNode *)node {
     NSParameterAssert(node.key.length);
-    NSUInteger const insertionIndex = [_children indexOfObject:node inSortedRange:(NSRange){ .length = _children.count } options:NSBinarySearchingInsertionIndex usingComparator:STRadixTreeNodeKeyComparator];
-    [_children insertObject:node atIndex:insertionIndex];
+    NSMutableArray * const children = self.st_children;
+    NSUInteger const insertionIndex = [children indexOfObject:node inSortedRange:(NSRange){ .length = children.count } options:NSBinarySearchingInsertionIndex usingComparator:STRadixTreeNodeKeyComparator];
+    [children insertObject:node atIndex:insertionIndex];
 }
 
 - (void)removeChild:(STRadixTreeNode *)node {
     [_children removeObject:node];
 }
 
+- (NSMutableArray *)st_children {
+    if (!_children) {
+        _children = [[NSMutableArray alloc] init];
+    }
+    return _children;
+}
 - (void)setChildren:(NSArray *)children {
-    [_children setArray:children];
+    [self.st_children setArray:children];
 }
 
 - (STRadixTreeNode *)childMatchingPrefixOfKey:(NSString *)key {
     NSParameterAssert(key.length);
-    NSUInteger const index = [_children indexOfObject:key inSortedRange:(NSRange){ .length = _children.count } options:0 usingComparator:STRadixTreeNodeKeyFirstCharacterComparator];
+    NSMutableArray * const children = self.st_children;
+    if (!children) {
+        return nil;
+    }
+    NSUInteger const index = [children indexOfObject:key inSortedRange:(NSRange){ .length = children.count } options:0 usingComparator:STRadixTreeNodeKeyFirstCharacterComparator];
     if (index != NSNotFound) {
-        return _children[index];
+        return children[index];
     }
     return nil;
 }
