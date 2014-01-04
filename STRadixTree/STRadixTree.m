@@ -114,7 +114,6 @@ lookupAgain:;
             }
             if ([remainingKey hasPrefix:childKey]) {
                 [remainingKey deleteCharactersInRange:(NSRange){ .length = childKey.length }];
-                parentNode = node;
                 node = child;
                 goto lookupAgain;
             }
