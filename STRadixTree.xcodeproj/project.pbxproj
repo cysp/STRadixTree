@@ -66,7 +66,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		2C2BECBF1874E9DA009EC7DC /* STRadixTreeTests-iOS copy.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "STRadixTreeTests-iOS copy.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C2BECBF1874E9DA009EC7DC /* STRadixTreeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = STRadixTreeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C2BECC11874EB45009EC7DC /* STRadixTreeNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STRadixTreeNode.m; sourceTree = "<group>"; };
 		2C2BECC21874EB45009EC7DC /* STRadixTreeNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STRadixTreeNode.h; sourceTree = "<group>"; };
 		2C676D431856A84A00B25210 /* libSTRadixTree.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSTRadixTree.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -137,7 +137,7 @@
 				2C676D431856A84A00B25210 /* libSTRadixTree.a */,
 				2C676D531856A84A00B25210 /* STRadixTreeTests.xctest */,
 				2CAD475F186EC68000032692 /* libSTRadixTree.a */,
-				2C2BECBF1874E9DA009EC7DC /* STRadixTreeTests-iOS copy.xctest */,
+				2C2BECBF1874E9DA009EC7DC /* STRadixTreeTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -190,7 +190,7 @@
 			);
 			name = "STRadixTreeTests-mac";
 			productName = STRadixTreeTests;
-			productReference = 2C2BECBF1874E9DA009EC7DC /* STRadixTreeTests-iOS copy.xctest */;
+			productReference = 2C2BECBF1874E9DA009EC7DC /* STRadixTreeTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		2C676D421856A84A00B25210 /* STRadixTree-iOS */ = {
@@ -358,7 +358,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = STRadixTreeTests/Info.plist;
-				PRODUCT_NAME = "STRadixTreeTests-iOS copy";
+				PRODUCT_NAME = STRadixTreeTests;
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -368,7 +368,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = STRadixTreeTests/Info.plist;
-				PRODUCT_NAME = "STRadixTreeTests-iOS copy";
+				PRODUCT_NAME = STRadixTreeTests;
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = xctest;
 			};

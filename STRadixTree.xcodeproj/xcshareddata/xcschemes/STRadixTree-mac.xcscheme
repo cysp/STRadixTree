@@ -33,7 +33,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2C2BECB11874E9DA009EC7DC"
-               BuildableName = "STRadixTreeTests-iOS copy.xctest"
+               BuildableName = "STRadixTreeTests.xctest"
                BlueprintName = "STRadixTreeTests-mac"
                ReferencedContainer = "container:STRadixTree.xcodeproj">
             </BuildableReference>
