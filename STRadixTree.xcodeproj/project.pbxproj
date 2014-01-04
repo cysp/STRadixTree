@@ -26,12 +26,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		2C2BECB31874E9DA009EC7DC /* PBXContainerItemProxy */ = {
+		2C61727D1877FD430082C342 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2C676D3B1856A84A00B25210 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 2C676D421856A84A00B25210;
-			remoteInfo = STRadixTree;
+			remoteGlobalIDString = 2CAD4755186EC68000032692;
+			remoteInfo = "STRadixTree-mac";
 		};
 		2C676D591856A84A00B25210 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -186,7 +186,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				2C2BECB21874E9DA009EC7DC /* PBXTargetDependency */,
+				2C61727E1877FD430082C342 /* PBXTargetDependency */,
 			);
 			name = "STRadixTreeTests-mac";
 			productName = STRadixTreeTests;
@@ -337,10 +337,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		2C2BECB21874E9DA009EC7DC /* PBXTargetDependency */ = {
+		2C61727E1877FD430082C342 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 2C676D421856A84A00B25210 /* STRadixTree-iOS */;
-			targetProxy = 2C2BECB31874E9DA009EC7DC /* PBXContainerItemProxy */;
+			target = 2CAD4755186EC68000032692 /* STRadixTree-mac */;
+			targetProxy = 2C61727D1877FD430082C342 /* PBXContainerItemProxy */;
 		};
 		2C676D5A1856A84A00B25210 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
