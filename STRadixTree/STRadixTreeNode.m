@@ -19,7 +19,6 @@
 - (id)initWithKey:(NSString *)key {
     if ((self = [super init])) {
         _key = [key copy];
-        _objects = [[NSMutableSet alloc] init];
     }
     return self;
 }
@@ -81,12 +80,19 @@
     return nil;
 }
 
+- (NSMutableSet *)st_objects {
+    if (!_objects) {
+        _objects = [[NSMutableSet alloc] init];
+    }
+    return _objects;
+}
+
 - (void)addObject:(id)object {
-    [_objects addObject:object];
+    [self.st_objects addObject:object];
 }
 
 - (void)setObjects:(NSSet *)objects {
-    [_objects setSet:objects];
+    [self.st_objects setSet:objects];
 }
 
 @end
