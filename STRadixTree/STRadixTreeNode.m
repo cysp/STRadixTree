@@ -9,7 +9,7 @@
 
 @implementation STRadixTreeNode {
 @private
-    NSMutableDictionary *_children;
+    CFMutableDictionaryRef _children;
     NSMutableSet *_objects;
 }
 
@@ -26,47 +26,59 @@
 
 - (void)addChild:(STRadixTreeNode *)node {
     NSParameterAssert(node.key.length);
-    NSMutableDictionary * const children = self.st_children;
+    CFMutableDictionaryRef const children = self.st_children;
     NSString * const nodeKey = node.key;
     unichar const nodeKeyFirstCharacter = [nodeKey characterAtIndex:0];
-    children[@(nodeKeyFirstCharacter)] = node;
+    void const * const key = (void *)(uintptr_t)nodeKeyFirstCharacter;
+    CFDictionarySetValue(children, key, (__bridge const void *)node);
 }
 
 - (void)removeChild:(STRadixTreeNode *)node {
     NSString * const nodeKey = node.key;
     unichar const nodeKeyFirstCharacter = [nodeKey characterAtIndex:0];
-    STRadixTreeNode * const found = _children[@(nodeKeyFirstCharacter)];
-    if (found == node) {
-        [_children removeObjectForKey:@(nodeKeyFirstCharacter)];
+    if (_children) {
+        void const * const key = (void *)(uintptr_t)nodeKeyFirstCharacter;
+        STRadixTreeNode * const found = CFDictionaryGetValue(_children, key);
+        if (found == node) {
+            CFDictionaryRemoveValue(_children, key);
+        }
     }
 }
 
-- (NSMutableDictionary *)st_children {
+- (CFMutableDictionaryRef)st_children {
     if (!_children) {
-        _children = [[NSMutableDictionary alloc] init];
+        _children = CFDictionaryCreateMutable(NULL, 0, NULL, &kCFTypeDictionaryValueCallBacks);
     }
     return _children;
 }
 - (NSArray *)children {
-    NSMutableArray * const children = [[NSMutableArray alloc] initWithCapacity:_children.count];
-    [_children enumerateKeysAndObjectsUsingBlock:^(id key, STRadixTreeNode *child, BOOL *stop) {
-        [children addObject:child];
-    }];
-    return children;
+    if (!_children) {
+        return @[];
+    }
+    CFIndex const childrenCount = CFDictionaryGetCount(_children);
+    void const *childrenValues[childrenCount];
+    CFDictionaryGetKeysAndValues(_children, NULL, childrenValues);
+    CFArrayRef const children = CFArrayCreate(NULL, childrenValues, childrenCount, &kCFTypeArrayCallBacks);
+    return (__bridge_transfer NSArray *)children;
 }
 - (void)setChildren:(NSArray *)children {
-    [_children removeAllObjects];
+    if (_children) {
+        CFDictionaryRemoveAllValues(_children);
+    }
     for (STRadixTreeNode *child in children) {
         [self addChild:child];
     }
 }
 
-- (STRadixTreeNode *)childMatchingPrefixOfKey:(NSString *)key {
-    NSParameterAssert(key.length);
-    NSMutableDictionary * const children = self.st_children;
-    unichar const keyFirstCharacter = [key characterAtIndex:0];
-    STRadixTreeNode * const found = _children[@(keyFirstCharacter)];
-    return found;
+- (STRadixTreeNode *)childMatchingPrefixOfKey:(NSString *)nodeKey {
+    NSParameterAssert(nodeKey.length);
+    if (_children) {
+        unichar const nodeKeyFirstCharacter = [nodeKey characterAtIndex:0];
+        void const * const key = (void *)(uintptr_t)nodeKeyFirstCharacter;
+        STRadixTreeNode * const found = CFDictionaryGetValue(_children, key);
+        return found;
+    }
+    return nil;
 }
 
 - (void)addObject:(id)object {
