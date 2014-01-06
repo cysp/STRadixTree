@@ -10,7 +10,8 @@
 @implementation STRadixTreeNode {
 @private
     CFMutableDictionaryRef _children;
-    NSMutableSet *_objects;
+    id _objects;
+    BOOL _objectsIsSet;
 }
 
 - (id)init {
@@ -80,19 +81,42 @@
     return nil;
 }
 
-- (NSMutableSet *)st_objects {
+
+- (NSSet *)objects {
     if (!_objects) {
-        _objects = [[NSMutableSet alloc] init];
+        return nil;
+    }
+    if (!_objectsIsSet) {
+        id object = _objects;
+        _objects = [[NSMutableSet alloc] initWithObjects:object, nil];
+        _objectsIsSet = YES;
     }
     return _objects;
 }
 
 - (void)addObject:(id)object {
-    [self.st_objects addObject:object];
+    if (!_objects) {
+        _objects = object;
+    } else {
+        if (_objectsIsSet) {
+            [(NSMutableSet *)_objects addObject:object];
+        } else {
+            id existingObject = _objects;
+            _objects = [[NSMutableSet alloc] initWithObjects:existingObject, object, nil];
+            _objectsIsSet = YES;
+        }
+    }
 }
 
 - (void)setObjects:(NSSet *)objects {
-    [self.st_objects setSet:objects];
+    if (_objects && _objectsIsSet) {
+        [(NSMutableSet *)_objects setSet:objects];
+    } else {
+        id existingObject = _objects;
+        _objects = [[NSMutableSet alloc] initWithObjects:existingObject, nil];
+        _objectsIsSet = YES;
+        [_objects unionSet:objects];
+    }
 }
 
 @end
