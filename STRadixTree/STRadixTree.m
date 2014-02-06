@@ -199,8 +199,10 @@ lookupAgain:;
             goto lookupAgain;
         }
     }
-    if (unambiguousCompletion) {
-        *unambiguousCompletion = [child.key substringFromIndex:remainingKey.length];
+    if ([child.key hasPrefix:remainingKey]) {
+        if (unambiguousCompletion) {
+            *unambiguousCompletion = [child.key substringFromIndex:remainingKey.length];
+        }
     }
     return child;
 }
