@@ -10,6 +10,8 @@
 @interface STRadixTree : NSObject
 
 - (void)addObject:(id)object forKey:(NSString *)key;
+- (void)removeObject:(id)object forKey:(NSString *)key;
+- (void)removeObjectsForKey:(NSString *)key;
 - (void)removeAllObjects;
 
 - (NSSet *)objectsForKey:(NSString *)key;
