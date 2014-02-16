@@ -20,6 +20,13 @@
     [tree addObject:@(5) forKey:@"2233"];
     [tree addObject:@(6) forKey:@"2230"];
 
+    XCTAssertEqual((NSUInteger)6, tree.count, @"");
+    XCTAssertEqual((NSUInteger)4, tree.height, @"");
+    XCTAssertEqual((NSUInteger)1, [tree countAtDepth:1], @"");
+    XCTAssertEqual((NSUInteger)0, [tree countAtDepth:2], @"");
+    XCTAssertEqual((NSUInteger)3, [tree countAtDepth:3], @"");
+    XCTAssertEqual((NSUInteger)2, [tree countAtDepth:4], @"");
+
     XCTAssertEqualObjects(@(1), [tree objectsForKey:@"2"].anyObject, @"");
     XCTAssertEqualObjects(@(2), [tree objectsForKey:@"2000"].anyObject, @"");
     XCTAssertEqualObjects(@(3), [tree objectsForKey:@"2001"].anyObject, @"");

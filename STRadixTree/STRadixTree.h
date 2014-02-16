@@ -9,6 +9,10 @@
 
 @interface STRadixTree : NSObject
 
+- (NSUInteger)count;
+- (NSUInteger)height;
+- (NSUInteger)countAtDepth:(NSUInteger)depth;
+
 - (void)addObject:(id)object forKey:(NSString *)key;
 - (void)removeAllObjects;
 
