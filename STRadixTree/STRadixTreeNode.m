@@ -24,6 +24,13 @@
     return self;
 }
 
+- (void)dealloc {
+    if (_children) {
+        CFRelease(_children);
+    }
+}
+
+
 - (void)addChild:(STRadixTreeNode *)node {
     NSParameterAssert(node.key.length);
     CFMutableDictionaryRef const children = self.st_children;
