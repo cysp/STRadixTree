@@ -7,18 +7,29 @@
 #import <Foundation/Foundation.h>
 
 
+@interface STRadixTreeNodeKey : NSObject
+- (id)initWithString:(NSString *)string range:(NSRange)range;
+@property (nonatomic,copy,readonly) NSString *string;
+@property (nonatomic,assign,readonly) NSRange range;
+@property (nonatomic,assign,readonly) unichar firstCharacter;
+- (BOOL)isEqualToString:(NSString *)string range:(NSRange)range;
+- (BOOL)isPrefixOfString:(NSString *)string range:(NSRange)range;
+- (BOOL)hasPrefix:(NSString *)string range:(NSRange)range;
+- (NSUInteger)lengthOfCommonPrefixWithString:(NSString *)string range:(NSRange)range;
+@end
+
 @interface STRadixTreeNode : NSObject
-@property (nonatomic,copy,readonly) NSString *key;
+@property (nonatomic,copy,readonly) STRadixTreeNodeKey *key;
 @property (nonatomic,copy,readonly) NSArray *children;
 @property (nonatomic,copy,readonly) NSSet *objects;
 @end
 
 @interface STRadixTreeNode ()
-- (id)initWithKey:(NSString *)key;
+- (id)initWithKey:(NSString *)key range:(NSRange)range;
 - (void)addChild:(STRadixTreeNode *)node;
 - (void)removeChild:(STRadixTreeNode *)node;
 - (void)setChildren:(NSArray *)children;
-- (STRadixTreeNode *)childMatchingPrefixOfKey:(NSString *)key;
+- (STRadixTreeNode *)childMatchingPrefixOfKey:(NSString *)key range:(NSRange)range;
 - (void)addObject:(id)object;
 - (void)setObjects:(NSSet *)objects;
 @end

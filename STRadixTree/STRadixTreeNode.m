@@ -6,9 +6,71 @@
 
 #include "STRadixTreeNode.h"
 
+@implementation STRadixTreeNodeKey {
+@private
+    NSString *_string;
+    NSRange _range;
+}
+- (id)initWithString:(NSString *)string range:(NSRange)range {
+    if ((self = [super init])) {
+        _string = string.copy;
+        _range = range;
+        if (_range.length > 0) {
+            [_string getCharacters:&_firstCharacter range:(NSRange){ .location = _range.location, .length = 1 }];
+        }
+    }
+    return self;
+}
+- (BOOL)isEqualToString:(NSString *)string range:(NSRange)range {
+    if (range.length != _range.length) {
+        return NO;
+    }
+    NSUInteger const length = _range.length;
+    unichar subchars[length];
+    [_string getCharacters:subchars range:_range];
+    NSString * const compare = [[NSString alloc] initWithCharactersNoCopy:subchars length:length freeWhenDone:NO];
+    return [string compare:compare options:NSLiteralSearch range:range] == NSOrderedSame;
+}
+- (BOOL)isPrefixOfString:(NSString *)string range:(NSRange)range {
+    if (range.length < _range.length) {
+        return NO;
+    }
+    NSUInteger const length = _range.length;
+    unichar subchars[length];
+    [_string getCharacters:subchars range:_range];
+    NSString * const compare = [[NSString alloc] initWithCharactersNoCopy:subchars length:length freeWhenDone:NO];
+    return [string compare:compare options:NSLiteralSearch range:(NSRange){ .location = range.location, .length = length }] == NSOrderedSame;
+}
+- (BOOL)hasPrefix:(NSString *)string range:(NSRange)range {
+    if (range.length > _range.length) {
+        return NO;
+    }
+    NSUInteger const length = _range.length;
+    unichar subchars[length];
+    [_string getCharacters:subchars range:_range];
+    NSString * const compare = [[NSString alloc] initWithCharactersNoCopy:subchars length:length freeWhenDone:NO];
+    return [string compare:compare options:NSLiteralSearch range:(NSRange){ .location = range.location, .length = _range.length }] == NSOrderedSame;
+}
+- (NSUInteger)lengthOfCommonPrefixWithString:(NSString *)string range:(NSRange)range {
+    if (range.length == 0) {
+        return 0;
+    }
+    NSUInteger const length = _range.length;
+    unichar subchars[length];
+    [_string getCharacters:subchars range:_range];
+    NSString * const compare = [[NSString alloc] initWithCharactersNoCopy:subchars length:length freeWhenDone:NO];
+    NSString * const compareb = [string substringWithRange:range];
+    return [compare commonPrefixWithString:compareb options:NSLiteralSearch].length;
+}
+- (NSString *)description {
+    return [NSString stringWithFormat:@"<%@:%p %@[%lu:%lu] (%@)>", NSStringFromClass(self.class), self, _string, _range.location, NSMaxRange(_range), [_string substringWithRange:_range]];
+}
+@end
+
 
 @implementation STRadixTreeNode {
 @private
+    STRadixTreeNodeKey *_key;
     CFMutableDictionaryRef _children;
     id _objects;
     BOOL _objectsIsSet;
@@ -17,9 +79,9 @@
 - (id)init {
     return [self doesNotRecognizeSelector:_cmd], nil;
 }
-- (id)initWithKey:(NSString *)key {
+- (id)initWithKey:(NSString *)key range:(NSRange)range {
     if ((self = [super init])) {
-        _key = [key copy];
+        _key = [[STRadixTreeNodeKey alloc] initWithString:key range:range];
     }
     return self;
 }
@@ -32,17 +94,15 @@
 
 
 - (void)addChild:(STRadixTreeNode *)node {
-    NSParameterAssert(node.key.length);
+    NSParameterAssert(node.key.range.length);
     CFMutableDictionaryRef const children = self.st_children;
-    NSString * const nodeKey = node.key;
-    unichar const nodeKeyFirstCharacter = [nodeKey characterAtIndex:0];
+    unichar const nodeKeyFirstCharacter = node.key.firstCharacter;
     void const * const key = (void *)(uintptr_t)nodeKeyFirstCharacter;
     CFDictionarySetValue(children, key, (__bridge const void *)node);
 }
 
 - (void)removeChild:(STRadixTreeNode *)node {
-    NSString * const nodeKey = node.key;
-    unichar const nodeKeyFirstCharacter = [nodeKey characterAtIndex:0];
+    unichar const nodeKeyFirstCharacter = node.key.firstCharacter;
     if (_children) {
         void const * const key = (void *)(uintptr_t)nodeKeyFirstCharacter;
         STRadixTreeNode * const found = CFDictionaryGetValue(_children, key);
@@ -77,10 +137,10 @@
     }
 }
 
-- (STRadixTreeNode *)childMatchingPrefixOfKey:(NSString *)nodeKey {
+- (STRadixTreeNode *)childMatchingPrefixOfKey:(NSString *)nodeKey range:(NSRange)range {
     NSParameterAssert(nodeKey.length);
     if (_children) {
-        unichar const nodeKeyFirstCharacter = [nodeKey characterAtIndex:0];
+        unichar const nodeKeyFirstCharacter = [nodeKey characterAtIndex:range.location];
         void const * const key = (void *)(uintptr_t)nodeKeyFirstCharacter;
         STRadixTreeNode * const found = CFDictionaryGetValue(_children, key);
         return found;

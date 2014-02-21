@@ -25,7 +25,7 @@
 
 - (id)init {
     if ((self = [super init])) {
-        _root = [[STRadixTreeNode alloc] initWithKey:@""];
+        _root = [[STRadixTreeNode alloc] initWithKey:@"" range:(NSRange){}];
     }
     return self;
 }
@@ -101,19 +101,22 @@
     }
 
     STRadixTreeNode *node = _root;
-    NSMutableString *remainingKey = key.mutableCopy;
+    NSRange keyRange = (NSRange){ .length = key.length };
 
     STRadixTreeNode *parentNode;
 lookupAgain:;
     {
-        STRadixTreeNode *child = [node childMatchingPrefixOfKey:remainingKey];
+        STRadixTreeNode *child = [node childMatchingPrefixOfKey:key range:keyRange];
         if (child) {
-            NSString * const childKey = child.key;
-            if ([remainingKey isEqualToString:childKey]) {
+            STRadixTreeNodeKey * const childKey = child.key;
+
+            if ([childKey isEqualToString:key range:keyRange]) {
                 return child;
             }
-            if ([remainingKey hasPrefix:childKey]) {
-                [remainingKey deleteCharactersInRange:(NSRange){ .length = childKey.length }];
+            if ([childKey isPrefixOfString:key range:keyRange]) {
+                NSUInteger const childKeyLength = childKey.range.length;
+                keyRange.location += childKeyLength;
+                keyRange.length -= childKeyLength;
                 node = child;
                 goto lookupAgain;
             }
@@ -123,7 +126,7 @@ lookupAgain:;
     }
 
     if (!create) {
-        if (remainingKey.length > 0) {
+        if (keyRange.length > 0) {
             return nil;
         }
         return node;
@@ -134,40 +137,40 @@ lookupAgain:;
     }
 
     if (!node || node == _root) {
-        node = [[STRadixTreeNode alloc] initWithKey:remainingKey];
+        node = [[STRadixTreeNode alloc] initWithKey:key range:keyRange];
         [parentNode addChild:node];
-    } else if (remainingKey.length == 0) {
+    } else if (keyRange.length == 0) {
         NSAssert(0, @"unexpected");
     } else {
         STRadixTreeNode *oldNode = node;
-        NSString * const oldNodeKey = node.key;
-        NSString * const commonPrefix = [remainingKey commonPrefixWithString:oldNodeKey options:NSLiteralSearch|NSAnchoredSearch];
-        NSString * const newNodeSuffix = [remainingKey substringFromIndex:commonPrefix.length];
-        if (commonPrefix.length == 0) {
-            STRadixTreeNode *newNode = [[STRadixTreeNode alloc] initWithKey:newNodeSuffix];
+        STRadixTreeNodeKey * const oldNodeKey = node.key;
+        NSUInteger const commonPrefixLength = [oldNodeKey lengthOfCommonPrefixWithString:key range:keyRange];
+        NSUInteger const newNodeSuffixLength = keyRange.length - commonPrefixLength;
+        if (commonPrefixLength == 0) {
+            STRadixTreeNode *newNode = [[STRadixTreeNode alloc] initWithKey:oldNodeKey.string range:oldNodeKey.range];
             [node addChild:newNode];
             node = newNode;
         } else {
-            NSString * const oldNodeSuffix = [oldNodeKey substringFromIndex:commonPrefix.length];
+            NSUInteger const oldNodeSuffixLength = oldNodeKey.range.length - commonPrefixLength;
 
-            STRadixTreeNode *intermediary = [[STRadixTreeNode alloc] initWithKey:commonPrefix];
+            STRadixTreeNode *intermediary = [[STRadixTreeNode alloc] initWithKey:oldNodeKey.string range:(NSRange){ .location = oldNodeKey.range.location, .length = commonPrefixLength }];
             [parentNode addChild:intermediary];
             [parentNode removeChild:oldNode];
 
-            if (oldNodeSuffix.length == 0) {
+            if (oldNodeSuffixLength == 0) {
                 [intermediary setChildren:oldNode.children];
                 [intermediary setObjects:oldNode.objects];
             } else {
-                STRadixTreeNode *replacement = [[STRadixTreeNode alloc] initWithKey:oldNodeSuffix];
+                STRadixTreeNode *replacement = [[STRadixTreeNode alloc] initWithKey:oldNodeKey.string range:(NSRange){ .location = oldNodeKey.range.location + commonPrefixLength, .length = oldNodeSuffixLength }];
                 [replacement setChildren:oldNode.children];
                 [replacement setObjects:oldNode.objects];
                 [intermediary addChild:replacement];
             }
 
-            if (newNodeSuffix.length == 0) {
+            if (newNodeSuffixLength == 0) {
                 node = intermediary;
             } else {
-                node = [[STRadixTreeNode alloc] initWithKey:newNodeSuffix];
+                node = [[STRadixTreeNode alloc] initWithKey:key range:(NSRange){ .location = keyRange.location + commonPrefixLength, .length = newNodeSuffixLength }];
                 [intermediary addChild:node];
             }
         }
@@ -184,24 +187,27 @@ lookupAgain:;
     }
 
     STRadixTreeNode *node = _root;
-    NSMutableString *remainingKey = prefix.mutableCopy;
+    NSRange prefixRange = (NSRange){ .length = prefix.length };
 
 lookupAgain:;
-    STRadixTreeNode *child = [node childMatchingPrefixOfKey:remainingKey];
+    STRadixTreeNode *child = [node childMatchingPrefixOfKey:prefix range:prefixRange];
     if (child) {
-        NSString * const childKey = child.key;
-        if ([remainingKey isEqualToString:childKey]) {
+        STRadixTreeNodeKey * const childKey = child.key;
+
+        if ([childKey isEqualToString:prefix range:prefixRange]) {
             return child;
         }
-        if ([remainingKey hasPrefix:childKey]) {
-            [remainingKey deleteCharactersInRange:(NSRange){ .length = childKey.length }];
+        if ([childKey isPrefixOfString:prefix range:prefixRange]) {
+            NSUInteger const childKeyLength = childKey.range.length;
+            prefixRange.location += childKeyLength;
+            prefixRange.length -= childKeyLength;
             node = child;
             goto lookupAgain;
         }
     }
-    if ([child.key hasPrefix:remainingKey]) {
+    if ([child.key hasPrefix:prefix range:prefixRange]) {
         if (unambiguousCompletion) {
-            *unambiguousCompletion = [child.key substringFromIndex:remainingKey.length];
+            *unambiguousCompletion = [child.key.string substringFromIndex:NSMaxRange(prefixRange)];
         }
     }
     return child;
