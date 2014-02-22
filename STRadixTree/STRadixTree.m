@@ -37,6 +37,18 @@
     [node addObject:object];
 }
 
+- (void)removeObject:(id)object forKey:(NSString *)key {
+    NSParameterAssert(key.length);
+    STRadixTreeNode *node = [self nodeForKey:key createIfNecessary:YES];
+    [node removeObject:object];
+}
+
+- (void)removeObjectsForKey:(NSString *)key {
+    NSParameterAssert(key.length);
+    STRadixTreeNode *node = [self nodeForKey:key createIfNecessary:YES];
+    [node setObjects:nil];
+}
+
 - (void)removeAllObjects {
     [_root setChildren:@[]];
 }

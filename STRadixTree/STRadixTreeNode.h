@@ -20,5 +20,7 @@
 - (void)setChildren:(NSArray *)children;
 - (STRadixTreeNode *)childMatchingPrefixOfKey:(NSString *)key;
 - (void)addObject:(id)object;
+- (void)removeObject:(id)object;
+- (void)setObject:(id)object;
 - (void)setObjects:(NSSet *)objects;
 @end

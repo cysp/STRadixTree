@@ -115,15 +115,27 @@
     }
 }
 
-- (void)setObjects:(NSSet *)objects {
-    if (_objects && _objectsIsSet) {
-        [(NSMutableSet *)_objects setSet:objects];
-    } else {
-        id existingObject = _objects;
-        _objects = [[NSMutableSet alloc] initWithObjects:existingObject, nil];
-        _objectsIsSet = YES;
-        [_objects unionSet:objects];
+- (void)removeObject:(id)object {
+    if (_objectsIsSet) {
+        [(NSMutableSet *)_objects removeObject:object];
+        if (((NSMutableSet *)_objects).count == 0) {
+            _objects = nil;
+            _objectsIsSet = NO;
+        }
+    } else if (_objects == object) {
+        _objects = nil;
+        _objectsIsSet = NO;
     }
+    //TODO collapse with parent
+}
+
+- (void)setObject:(id)object {
+    _objects = object;
+    _objectsIsSet = NO;
+}
+- (void)setObjects:(NSSet *)objects {
+    _objects = objects;
+    _objectsIsSet = !!objects;
 }
 
 @end

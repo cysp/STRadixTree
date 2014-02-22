@@ -41,4 +41,14 @@
     XCTAssertEqualObjects(([NSSet setWithObjects:@(4), @(5), @(6), nil]), [tree objectsForKeyPrefix:@"22"], @"");
 }
 
+- (void)testDeletion {
+    STRadixTree *tree = [[STRadixTree alloc] init];
+
+    [tree addObject:@(1) forKey:@"a"];
+    XCTAssertEqualObjects(@(1), [tree objectsForKey:@"a"].anyObject, @"");
+
+    [tree removeObject:@(1) forKey:@"a"];
+    XCTAssertNil([tree objectsForKey:@"a"].anyObject, @"");
+}
+
 @end
