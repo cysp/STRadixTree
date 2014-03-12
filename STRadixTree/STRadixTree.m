@@ -211,10 +211,14 @@ lookupAgain:;
             goto lookupAgain;
         }
     }
-    if ([child.key hasPrefix:remainingKey]) {
-        if (unambiguousCompletion) {
-            *unambiguousCompletion = [child.key substringFromIndex:remainingKey.length];
-        }
+
+    NSString * const childKey = child.key;
+    if (![childKey hasPrefix:remainingKey]) {
+        // child's key was not a prefix of the remaining search term, so is not the result we want
+        return nil;
+    }
+    if (unambiguousCompletion) {
+        *unambiguousCompletion = [childKey substringFromIndex:remainingKey.length];
     }
     return child;
 }
