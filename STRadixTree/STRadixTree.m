@@ -31,6 +31,60 @@
 }
 
 
+- (NSUInteger)count {
+    NSUInteger count = 0;
+    for (STRadixTreeNode *node in _root.children) {
+        count += [self countOfSubtreeAtNode:node];
+    }
+    return count;
+}
+- (NSUInteger)countOfSubtreeAtNode:(STRadixTreeNode *)node {
+    NSUInteger count = node.objects.count;
+    for (STRadixTreeNode *child in node.children) {
+        count += [self countOfSubtreeAtNode:child];
+    }
+    return count;
+}
+
+- (NSUInteger)height {
+    return [self heightOfSubtreeAtNode:_root];
+}
+- (NSUInteger)heightOfSubtreeAtNode:(STRadixTreeNode *)node {
+    if (!node.hasChildren) {
+        return 0;
+    }
+    NSUInteger depth = 0;
+    for (STRadixTreeNode *child in node.children) {
+        NSUInteger depthForNode = [self heightOfSubtreeAtNode:child];
+        if (depthForNode > depth) {
+            depth = depthForNode;
+        }
+    }
+    return depth + 1;
+}
+
+- (NSUInteger)countAtDepth:(NSUInteger)depth {
+    if (depth == 0) {
+        return 0;
+    }
+    NSUInteger count = 0;
+    for (STRadixTreeNode *node in _root.children) {
+        count += [self countAtDepth:depth-1 forNode:node];
+    }
+    return count;
+}
+- (NSUInteger)countAtDepth:(NSUInteger)depth forNode:(STRadixTreeNode *)node {
+    if (depth == 0) {
+        return node.objects.count;
+    }
+    NSUInteger count = 0;
+    for (STRadixTreeNode *child in node.children) {
+        count += [self countAtDepth:depth-1 forNode:child];
+    }
+    return count;
+}
+
+
 - (void)addObject:(id)object forKey:(NSString *)key {
     NSParameterAssert(key.length);
     STRadixTreeNode *node = [self nodeForKey:key createIfNecessary:YES];

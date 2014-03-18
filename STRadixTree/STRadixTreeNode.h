@@ -15,6 +15,7 @@
 
 @interface STRadixTreeNode ()
 - (id)initWithKey:(NSString *)key;
+- (BOOL)hasChildren;
 - (void)addChild:(STRadixTreeNode *)node;
 - (void)removeChild:(STRadixTreeNode *)node;
 - (void)setChildren:(NSArray *)children;

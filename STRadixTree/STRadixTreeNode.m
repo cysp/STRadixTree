@@ -52,6 +52,14 @@
     }
 }
 
+- (BOOL)hasChildren {
+    if (!_children) {
+        return NO;
+    }
+    CFIndex const childrenCount = CFDictionaryGetCount(_children);
+    return childrenCount != 0;
+}
+
 - (CFMutableDictionaryRef)st_children {
     if (!_children) {
         _children = CFDictionaryCreateMutable(NULL, 0, NULL, &kCFTypeDictionaryValueCallBacks);
