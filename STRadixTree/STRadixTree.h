@@ -9,13 +9,13 @@
 
 @interface STRadixTree : NSObject
 
-- (void)addObject:(id)object forKey:(NSString *)key;
-- (void)removeObject:(id)object forKey:(NSString *)key;
-- (void)removeObjectsForKey:(NSString *)key;
+- (void)addObject:(id __nonnull)object forKey:(NSString * __nonnull)key;
+- (void)removeObject:(id __nonnull)object forKey:(NSString * __nonnull)key;
+- (void)removeObjectsForKey:(NSString * __nonnull)key;
 - (void)removeAllObjects;
 
-- (NSSet *)objectsForKey:(NSString *)key;
-- (NSSet *)objectsForKeyPrefix:(NSString *)prefix;
-- (NSSet *)objectsForKeyPrefix:(NSString *)prefix unambiguousCompletion:(NSString * __autoreleasing *)unambiguousCompletion;
+- (NSSet * __nullable)objectsForKey:(NSString * __nonnull)key;
+- (NSSet * __nullable)objectsForKeyPrefix:(NSString * __nonnull)prefix;
+- (NSSet * __nullable)objectsForKeyPrefix:(NSString * __nonnull)prefix unambiguousCompletion:(NSString * __nullable __autoreleasing * __nullable)unambiguousCompletion;
 
 @end

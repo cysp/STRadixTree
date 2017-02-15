@@ -8,19 +8,21 @@
 
 
 @interface STRadixTreeNode : NSObject
-@property (nonatomic,copy,readonly) NSString *key;
-@property (nonatomic,copy,readonly) NSArray *children;
-@property (nonatomic,copy,readonly) NSSet *objects;
-@end
 
-@interface STRadixTreeNode ()
-- (id)initWithKey:(NSString *)key;
-- (void)addChild:(STRadixTreeNode *)node;
-- (void)removeChild:(STRadixTreeNode *)node;
-- (void)setChildren:(NSArray *)children;
-- (STRadixTreeNode *)childMatchingPrefixOfKey:(NSString *)key;
-- (void)addObject:(id)object;
-- (void)removeObject:(id)object;
-- (void)setObject:(id)object;
-- (void)setObjects:(NSSet *)objects;
+- (id __null_unspecified)init NS_UNAVAILABLE;
+- (id __nonnull)initWithKey:(NSString * __nonnull)key NS_DESIGNATED_INITIALIZER;
+
+@property (nonatomic,copy,nonnull,readonly) NSString *key;
+
+@property (nonatomic,copy,null_resettable) NSArray *children;
+- (void)addChild:(STRadixTreeNode * __nonnull)node;
+- (void)removeChild:(STRadixTreeNode * __nonnull)node;
+- (STRadixTreeNode * __nullable)childMatchingPrefixOfKey:(NSString * __nonnull)key;
+
+@property (nonatomic,copy,nullable,readonly) NSSet *objects;
+- (void)addObject:(id __nonnull)object;
+- (void)removeObject:(id __nonnull)object;
+- (void)setObject:(id __nullable)object;
+- (void)setObjects:(NSSet * __nullable)objects;
+
 @end
