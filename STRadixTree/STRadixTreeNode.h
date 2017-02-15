@@ -7,22 +7,22 @@
 #import <Foundation/Foundation.h>
 
 
-@interface STRadixTreeNode : NSObject
+@interface STRadixTreeNode<__covariant ObjectType : NSObject *> : NSObject
 
 - (id __null_unspecified)init NS_UNAVAILABLE;
 - (id __nonnull)initWithKey:(NSString * __nonnull)key NS_DESIGNATED_INITIALIZER;
 
 @property (nonatomic,copy,nonnull,readonly) NSString *key;
 
-@property (nonatomic,copy,null_resettable) NSArray *children;
-- (void)addChild:(STRadixTreeNode * __nonnull)node;
-- (void)removeChild:(STRadixTreeNode * __nonnull)node;
-- (STRadixTreeNode * __nullable)childMatchingPrefixOfKey:(NSString * __nonnull)key;
+@property (nonatomic,copy,null_resettable) NSArray<STRadixTreeNode<ObjectType> *> *children;
+- (void)addChild:(STRadixTreeNode<ObjectType> * __nonnull)node;
+- (void)removeChild:(STRadixTreeNode<ObjectType> * __nonnull)node;
+- (STRadixTreeNode<ObjectType> * __nullable)childMatchingPrefixOfKey:(NSString * __nonnull)key;
 
-@property (nonatomic,copy,nullable,readonly) NSSet *objects;
-- (void)addObject:(id __nonnull)object;
-- (void)removeObject:(id __nonnull)object;
-- (void)setObject:(id __nullable)object;
-- (void)setObjects:(NSSet * __nullable)objects;
+@property (nonatomic,copy,nullable,readonly) NSSet<ObjectType> *objects;
+- (void)addObject:(ObjectType __nonnull)object;
+- (void)removeObject:(ObjectType __nonnull)object;
+- (void)setObject:(ObjectType __nullable)object;
+- (void)setObjects:(NSSet<ObjectType> * __nullable)objects;
 
 @end
